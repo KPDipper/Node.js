@@ -50,7 +50,7 @@ exports.addUser = async (req, res) => {
           from: "pokhare2468@gmail.com", //yo tai hamro email ho
           to: user.email, //abha jasko email verfy garnu cha teslai jancha
           subject: "Verification Email",
-          text: ` Hello, \n Please click on the following link to verify your email.\n http:\/\/${req.headers.host}\/api\/confirmation\/${token.token}`,
+          text: ` Hello, \n Please click on the following link to verify your email.\n${url}`,
           //yo bhaneko tai jaba verfy garchyoum email teti bela hami lai yo url link ma lagdincha hami lai
           //token.token ma tfirst tai model ho arko tai field ho
           //token.token ma tai right side ko token ko tai url ko token bhyo ra mathi bhanko token.save() ma database ma bhyo jaba verfy ma click garum then
@@ -105,8 +105,8 @@ exports.resendVerification = async (req, res) => {
     from: "noreply@ourpage.com",
     to: user.email,
     subject: "Verification Email",
-    text: ` Hello, \n Please click on the following link to verify your email.\n http:\/\/${req.headers.host}\/api\/confirmation\/${token.token}`,
-    html: `<button><a href='${url}'>Verify</button>`,
+    text: ` Hello, \n Please click on the following link to verify your email.\n${url}`,
+    html: `<a href= '${url}'><button>Verify</button></a>`,
   });
 
   res.json({ message: "Verfication link has been sent to email" });
@@ -237,14 +237,15 @@ exports.forgetPassword = async (req, res) => {
     return res.status(400).json({ error: "Something went wrong" });
   }
 
+  const url = process.env.FRONTEND_URL + "/resetpassword/" + token.token;
   // const url = `http:\/\/${req.headers.host}\/api\/resetpassword\/${token.token}`
   //send email//yehi token mail ma pathuna
   sendEmail({
-    from: "wuhuh@gmail.com",
+    from: "pokhare2468@gmail.com",
     to: user.email,
     subject: "password reset link",
-    text: ` Please click on the link below to reset your password. <br> \n http:\/\/${req.headers.host}\/api\/resetpassword\/${token.token}`,
-    html: `<button>Reset Password</button>`, //yesma click garyou bhane hami reset password function ma janchyou which down below
+    text: ` Please click on the link below to reset your password. <br> \n ${url}`,
+    html: `<a href= '${url}'><button>Reset Password</button></a>`, //yesma click garyou bhane hami reset password function ma janchyou which down below
   });
 
   res.json({ message: "Password reset link has been sent to your email" });
@@ -273,7 +274,7 @@ exports.resetPassword = async (req, res) => {
   }
 
   //now reseting password
-  user.password = req.body.password; //yo tai nayapassword
+  user.password = req.body.new_password; //yo tai nayapassword//front end ko api ma ni new_password hunu parcha
   user = await user.save(); //ani teslai save gareko
 
   if (!user) {
