@@ -142,6 +142,12 @@ exports.filterProduct=async(req,res)=>{
   }
  }
  //here key bhaneko map garda keri item pass garchyou estai ho
+  // filter[category] = ['asdf','dfsf'].herejaba haile category filter ma click garchyoum tyo value filter[category] ma aucha
+    // args[category] = ['asdf','dfsf'].abha tyo value args[category] ma ayera bascha
+    // filter[product_price] = [0,999]//same goes for the price
+    // args[product_price].gte :0
+    // args[product_price].lte :999
+    
 
  let filterProduct= await Product.find(Args)
  .populate('category')

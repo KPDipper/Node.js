@@ -2,6 +2,9 @@ const multer=require('multer')//multer le file upload garne server ma-first we i
 const fs=require('fs')//fs is file system
 const path=require('path')//here we defining path to save where
 
+
+//storage le kaha store garne//k name storne garne 
+//basically file ko path ra name dine kam storage le garcha
 const storage=multer.diskStorage({//esle path kata gayera store garne ra filename k dine bhanera const storage ko kam ho
     destination:(req,file,cb)=>{//here cb is call function
         let fileDestination='public/uploads/'//yo tai ka gayera save garne  provdes us files destination

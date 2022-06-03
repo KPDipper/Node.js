@@ -1,6 +1,9 @@
 const mongoose = require('mongoose')
 const {ObjectId} = mongoose.Schema
 
+
+
+
 const tokenSchema= new mongoose.Schema({
 
     token:{
@@ -15,7 +18,8 @@ const tokenSchema= new mongoose.Schema({
     createdAt:{
         type:Date,
         default:Date.now(),
-        expires: 86400//time limit for verfification by user
+        expires: 86400//time limit for verfification by user//here mongodb ma ni token ko value sab delete  huncha//token empty hunu parcha aster 24 hrs in mongodb
+
     }
 
 })

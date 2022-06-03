@@ -209,7 +209,7 @@ exports.userSign = async (req, res) => {
   return res.json({ token, user: { name, email, role, _id } });
 };
 
-//user signout
+//user signout-
 
 exports.userSignout = (req, res) => {
   res.clearCookie("mycookie"); //my cookie ma bhayeko data lai clear gareko

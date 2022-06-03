@@ -30,6 +30,7 @@ const CategoryRoute = require('./Route/categoryRoute')//yo tai hamile route call
 const ProductRoute=require('./Route/productRoute')
 const UserRoute=require('./Route/userRoute')
 const OrderRoute = require('./Route/orderRouter')
+const PaymentRoute = require("./Route/paymentRoute")
 
 const morgan =require('morgan')
 // const expressValidator = require('express-validator')
@@ -60,6 +61,7 @@ app.use('/api',CategoryRoute)//yesma app.use tai preffix ko lagi use huncha and 
 app.use('/api',ProductRoute)
 app.use('/api',UserRoute)
 app.use('/api',OrderRoute)
+app.use('/api',PaymentRoute)
 
 
 //listen server run huna ko lagi hos

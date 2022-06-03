@@ -85,7 +85,7 @@ userSchema.methods = {
     }
   },
 
-  authenticate: function (plaintext) {
+  authenticate: function(plaintext) {
     return this.encryptPassword(plaintext) === this.hashed_password;
     //database ma save hune tai hashed_password ho
     //plaintext tai user bata aune password  ho so we check password ra database
