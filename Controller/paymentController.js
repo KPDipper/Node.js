@@ -5,7 +5,8 @@ const stripe= require('stripe')(process.env.STRIPE_SECRET_KEY)
 
 exports.processPayment = async(req,res)=>{
 
-    const paymentIntent= await stripe.paymentIntent.create({//paymenyt tai k ma accept garn bhanera//frontend bata collect garna ko lagi use bhuncha
+    //paymentIntents/payment  is stripe function
+    const paymentIntent= await stripe.paymentIntents.create({//paymenyt tai k ma accept garn bhanera//frontend bata collect garna ko lagi use bhuncha
         amount:req.body.amount,
         currency:"npr",
        metadata:{integration_check:"accept_a_payment"}//payment accept garna ko lagi//yo amount ra currency front bata aucha
@@ -21,7 +22,7 @@ exports.processPayment = async(req,res)=>{
 }
 
 //send stripe key to frontend to connect to frontend
-
+//yedi pay success  bhyo bhane yo call huncha
 exports.sendStripeKey= async( req,res)=>{
 
     res.status(200).json({
